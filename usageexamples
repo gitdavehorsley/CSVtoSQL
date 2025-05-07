@@ -1,0 +1,25 @@
+# Example 1: Basic usage with SQLite (default)
+python csv_to_sql.py --file customer_data.csv --table customers
+
+# Example 2: Using PostgreSQL with schema and table replacement
+python csv_to_sql.py \
+  --file sales_data.csv \
+  --table sales \
+  --db postgresql://username:password@localhost:5432/mydatabase \
+  --schema analytics \
+  --if-exists replace
+
+# Example 3: MySQL with custom chunk size and delimiter
+python csv_to_sql.py \
+  --file large_dataset.csv \
+  --table large_data \
+  --db mysql+pymysql://user:pass@localhost/mydb \
+  --chunksize 5000 \
+  --delimiter ";" \
+  --encoding latin1
+
+# Example 4: Append to existing table
+python csv_to_sql.py \
+  --file new_transactions.csv \
+  --table transactions \
+  --if-exists append
